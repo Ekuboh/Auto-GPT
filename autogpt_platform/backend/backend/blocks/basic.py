@@ -88,7 +88,7 @@ class FindInDictionaryBlock(Block):
 
     def __init__(self):
         super().__init__(
-            id="b2g2c3d4-5e6f-7g8h-9i0j-k1l2m3n4o5p6",
+            id="0e50422c-6dee-4145-83d6-3a5a392f65de",
             description="Lookup the given key in the input dictionary/object/list and return the value.",
             input_schema=FindInDictionaryBlock.Input,
             output_schema=FindInDictionaryBlock.Output,
@@ -330,20 +330,17 @@ class AddToDictionaryBlock(Block):
         )
 
     def run(self, input_data: Input, **kwargs) -> BlockOutput:
-        try:
-            # If no dictionary is provided, create a new one
-            if input_data.dictionary is None:
-                updated_dict = {}
-            else:
-                # Create a copy of the input dictionary to avoid modifying the original
-                updated_dict = input_data.dictionary.copy()
+        # If no dictionary is provided, create a new one
+        if input_data.dictionary is None:
+            updated_dict = {}
+        else:
+            # Create a copy of the input dictionary to avoid modifying the original
+            updated_dict = input_data.dictionary.copy()
 
-            # Add the new key-value pair
-            updated_dict[input_data.key] = input_data.value
+        # Add the new key-value pair
+        updated_dict[input_data.key] = input_data.value
 
-            yield "updated_dictionary", updated_dict
-        except Exception as e:
-            yield "error", f"Failed to add entry to dictionary: {str(e)}"
+        yield "updated_dictionary", updated_dict
 
 
 class AddToListBlock(Block):
@@ -401,23 +398,20 @@ class AddToListBlock(Block):
         )
 
     def run(self, input_data: Input, **kwargs) -> BlockOutput:
-        try:
-            # If no list is provided, create a new one
-            if input_data.list is None:
-                updated_list = []
-            else:
-                # Create a copy of the input list to avoid modifying the original
-                updated_list = input_data.list.copy()
+        # If no list is provided, create a new one
+        if input_data.list is None:
+            updated_list = []
+        else:
+            # Create a copy of the input list to avoid modifying the original
+            updated_list = input_data.list.copy()
 
-            # Add the new entry
-            if input_data.position is None:
-                updated_list.append(input_data.entry)
-            else:
-                updated_list.insert(input_data.position, input_data.entry)
+        # Add the new entry
+        if input_data.position is None:
+            updated_list.append(input_data.entry)
+        else:
+            updated_list.insert(input_data.position, input_data.entry)
 
-            yield "updated_list", updated_list
-        except Exception as e:
-            yield "error", f"Failed to add entry to list: {str(e)}"
+        yield "updated_list", updated_list
 
 
 class NoteBlock(Block):
@@ -429,7 +423,7 @@ class NoteBlock(Block):
 
     def __init__(self):
         super().__init__(
-            id="31d1064e-7446-4693-o7d4-65e5ca9110d1",
+            id="cc10ff7b-7753-4ff2-9af6-9399b1a7eddc",
             description="This block is used to display a sticky note with the given text.",
             categories={BlockCategory.BASIC},
             input_schema=NoteBlock.Input,
